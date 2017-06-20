@@ -1,6 +1,6 @@
 ---
   name: "icsp_server_attribute_del"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Remove a Server attribute on a ICSP registered server."
   enabled: true
   entry_point: "icsp_server_attribute_set.py"

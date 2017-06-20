@@ -1,6 +1,6 @@
 ---
   name: "icsp_server_details_get"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Retrieve details for specified server"
   enabled: true
   entry_point: "icsp_server_details_get.py"

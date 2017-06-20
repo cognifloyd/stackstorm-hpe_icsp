@@ -1,6 +1,6 @@
 ---
   name: "icsp_buildplan_get"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Retreive Available BuildPlans"
   enabled: true
   entry_point: "icsp_buildplan_get.py"

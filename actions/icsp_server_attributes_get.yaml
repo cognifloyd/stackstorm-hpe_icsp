@@ -1,6 +1,6 @@
 ---
   name: "icsp_server_attributes_get"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Retrieve Attributes set against Server"
   enabled: true
   entry_point: "icsp_server_attributes_get.py"

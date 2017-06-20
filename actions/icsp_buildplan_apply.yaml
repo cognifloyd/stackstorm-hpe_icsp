@@ -1,6 +1,6 @@
 ---
   name: "icsp_buildplan_apply"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Apply Buidlplan to Specified Servers"
   enabled: true
   entry_point: "icsp_buildplan_apply.py"
