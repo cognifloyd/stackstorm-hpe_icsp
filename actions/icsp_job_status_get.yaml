@@ -1,6 +1,6 @@
 ---
   name: "icsp_job_status_get"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Return Status of specified Job"
   enabled: true
   entry_point: "icsp_job_status_get.py"

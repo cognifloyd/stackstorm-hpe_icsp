@@ -1,6 +1,6 @@
 ---
   name: "icsp_server_attribute_add"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Add or Update a Server attribute on a ICSP registered server."
   enabled: true
   entry_point: "icsp_server_attribute_set.py"
