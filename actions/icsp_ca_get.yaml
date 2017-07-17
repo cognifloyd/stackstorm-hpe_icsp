@@ -1,6 +1,6 @@
 ---
   name: "icsp_ca_get"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Retreive CA Certificate from ICSP"
   enabled: true
   entry_point: "icsp_ca_get.py"

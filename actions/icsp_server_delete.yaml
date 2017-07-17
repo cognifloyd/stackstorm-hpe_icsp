@@ -1,6 +1,6 @@
 ---
   name: "icsp_server_delete"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Delete server from ICSP server list."
   enabled: true
   entry_point: "icsp_server_delete.py"
