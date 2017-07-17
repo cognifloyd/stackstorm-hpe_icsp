@@ -17,20 +17,19 @@ from lib.icsp import ICSPBaseActions
 
 
 class GetServers(ICSPBaseActions):
-    def run(self, connection_details=None):
-
+    def run(self, state, connection_details=None):
+        results = []
         self.set_connection(connection_details)
         self.get_sessionid()
-        servers = self.get_servers()
+        endpoint = "/rest/os-deployment-servers/"
+        allservers = self.icsp_get(endpoint)
+        filters = allservers['members']
 
-        if servers:
-            list = {}
-            for server in servers:
-                serialNumber = server['serialNumber']
-                print serialNumber
-                if server['serialNumber'] is not None:
-                    list[serialNumber] = server
-            return list
-          
-        else:
-            raise ValueError("No Servers Found")
+        for server in filters:
+            if state == "ALL":
+                results.append(server)
+            elif server['state'] == state:
+                results.append(server)
+
+
+        return results
