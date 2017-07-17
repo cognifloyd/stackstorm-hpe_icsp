@@ -88,12 +88,6 @@ class ICSPBaseActions(Action):
                                 mids.append(int(server["mid"]))
         return mids
 
-    def get_servers(self):
-        endpoint = "/rest/os-deployment-servers"
-        getresults = self.icsp_get(endpoint)
-        servers = getresults["members"]
-        return servers
-
     def validate_mids(self, identifiers):
         for n in identifiers:
             try:
