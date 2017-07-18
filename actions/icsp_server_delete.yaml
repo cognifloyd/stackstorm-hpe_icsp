@@ -5,14 +5,23 @@
   enabled: true
   entry_point: "icsp_server_delete.py"
   parameters:
-    mids:
+    identifiers:
       type: "array"
-      description: "Server MID list."
+      description: "Server idenfiter list list."
       required: true
       position: 0
+    id_type:
+      type: "string"
+      description: "Type of Identifier used."
+      required: true
+      position: 1
+      enum:
+        - mids
+        - serialnumber
+        - uuid
     connection_details:
       type: "object"
       description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
       required: false
       secret: true
-      position: 1
+      position: 2

@@ -17,9 +17,14 @@ from lib.icsp import ICSPBaseActions
 
 
 class DeleteServer(ICSPBaseActions):
-    def run(self, mids, connection_details=None):
+    def run(self, identifiers, id_type, connection_details=None):
         self.set_connection(connection_details)
         self.get_sessionid()
+        if id_type != "mids":
+            mids = self.get_mids(identifiers, id_type)
+        else:
+            mids = identifiers
+
         for mid in mids:
             try:
                 isinstance(mid, int)
