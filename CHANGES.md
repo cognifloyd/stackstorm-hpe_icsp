@@ -3,6 +3,7 @@
 # 0.6.1
 
 - Addition of of get servers action to list current registered servers
+- Update to delete server action to take three types of identifier
 
 # 0.6.0
 
