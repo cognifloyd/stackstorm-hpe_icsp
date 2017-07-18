@@ -31,5 +31,4 @@ class GetServers(ICSPBaseActions):
             elif server['state'] == state:
                 results.append(server)
 
-
         return results
