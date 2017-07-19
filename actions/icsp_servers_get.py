@@ -16,21 +16,19 @@
 from lib.icsp import ICSPBaseActions
 
 
-class DeleteServer(ICSPBaseActions):
-    def run(self, identifiers, id_type, connection_details=None):
+class GetServers(ICSPBaseActions):
+    def run(self, state, connection_details=None):
+        results = []
         self.set_connection(connection_details)
         self.get_sessionid()
-        if id_type != "mids":
-            mids = self.get_mids(identifiers, id_type)
-        else:
-            mids = identifiers
+        endpoint = "/rest/os-deployment-servers/"
+        allservers = self.icsp_get(endpoint)
+        filters = allservers['members']
 
-        for mid in mids:
-            try:
-                isinstance(mid, int)
-            except:
-                raise ValueError("MID values must be numbers")
+        for server in filters:
+            if state == "ALL":
+                results.append(server)
+            elif server['state'] == state:
+                results.append(server)
 
-            endpoint = "/rest/os-deployment-servers/%s" % (mid)
-            self.icsp_delete(endpoint)
-        return
+        return results

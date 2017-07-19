@@ -1,0 +1,24 @@
+---
+  name: "icsp_servers_get"
+  runner_type: "python-script"
+  description: "Retrieve Servers registered in ICSP"
+  enabled: true
+  entry_point: "icsp_servers_get.py"
+  parameters:
+    state:
+      type: "string"
+      description: "Return servers of this state"
+      required: false
+      position: 0
+      default: all
+      enum:
+        - ALL
+        - OK
+        - MAINTENANCE
+        - UNREACHABLE
+    connection_details:
+      type: "object"
+      description: "Connection details. eg { \"host\": \"192.168.0.1\", \"user\":\"username\", \"pass\": \"secret\" }"
+      required: false
+      secret: true
+      position: 1
