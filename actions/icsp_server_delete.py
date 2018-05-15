@@ -28,7 +28,7 @@ class DeleteServer(ICSPBaseActions):
         for mid in mids:
             try:
                 isinstance(mid, int)
-            except:
+            except ValueError:
                 raise ValueError("MID values must be numbers")
 
             endpoint = "/rest/os-deployment-servers/%s" % (mid)
