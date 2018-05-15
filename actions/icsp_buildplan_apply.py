@@ -35,7 +35,7 @@ class ApplyBuildPlan(ICSPBaseActions):
             # Confirm input are integers
             try:
                 isinstance(plan, int)
-            except:
+            except ValueError:
                 raise ValueError("Build plans must be \
                                  Integers (comma seperated)")
 

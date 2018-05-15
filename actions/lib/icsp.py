@@ -92,7 +92,7 @@ class ICSPBaseActions(Action):
         for n in identifiers:
             try:
                 int(n)
-            except:
+            except ValueError:
                 raise ValueError("Identifier provided is not a MID")
 
     def icsp_get(self, endpoint):

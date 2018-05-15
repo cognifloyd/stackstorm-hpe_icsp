@@ -1,5 +1,9 @@
 # Change Log
 
+# 0.6.3
+
+- Minor linting fix
+
 # 0.6.1
 
 - Addition of of get servers action to list current registered servers

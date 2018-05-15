@@ -26,7 +26,7 @@ class GetServerAttributes(ICSPBaseActions):
         for mid in mids:
             try:
                 isinstance(mid, int)
-            except:
+            except ValueError:
                 raise ValueError("MIDs must be integers")
             getreq = self.icsp_get(endpoint + "/%s" % (mid))
             allattr = getreq['customAttributes']
