@@ -3,5 +3,8 @@ ref: hpe_icsp
 name : hpe_icsp
 description : HP Enterprise Insight Control Server Provisioning Integration
 version: 0.6.3
+python_versions:
+  - "2"
+  - "3"
 author : Paul Mulvihill
 email : paul.mulvihill@pulsant.com
