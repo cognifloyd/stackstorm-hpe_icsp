@@ -1,5 +1,9 @@
 # Change Log
 
+# 0.6.4
+
+- Minor linting fix
+
 # 0.6.3
 
 - Minor linting fix

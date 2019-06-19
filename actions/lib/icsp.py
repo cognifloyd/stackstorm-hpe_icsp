@@ -80,12 +80,10 @@ class ICSPBaseActions(Action):
         # the ID order not the icsp server order
         for id in ids:
             for server in servers:
-                if (((idtype == 'serialnumber' and
-                    server["serialNumber"] == id) or
-                        (idtype == 'uuid' and
-                            server["uuid"] == id)) and
+                if (((idtype == 'serialnumber' and server["serialNumber"] == id) or
+                        (idtype == 'uuid' and server["uuid"] == id)) and
                         server["mid"] not in mids):
-                                mids.append(int(server["mid"]))
+                    mids.append(int(server["mid"]))
         return mids
 
     def validate_mids(self, identifiers):
