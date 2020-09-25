@@ -1,0 +1,33 @@
+---
+version: '1.0'
+description: Deploy a Key with server Unique values
+input:
+  - identifier
+  - id_type
+  - key
+  - value
+  - connection_details
+tasks:
+  get_mid:
+    action: hpe_icsp.icsp_mid_get
+    retry:
+      count: 5
+      delay: 120
+    input:
+      identifiers:
+        - <% ctx().identifier %>
+      identifier_type: <% ctx().id_type %>
+      connection_details: <% ctx().connection_details %>
+    next:
+      - when: '{{ succeeded() }}'
+        publish:
+          - icsp_mid: <% result().result.mid %>
+        do:
+          - set_attribute
+  set_attribute:
+    action: hpe_icsp.icsp_server_attribute_add
+    input:
+      mid: <% ctx().icsp_mid %>
+      attribute_key: <% ctx().key %>
+      attribute_value: <% ctx().value %>
+      connection_details: <% ctx().connection_details %>
