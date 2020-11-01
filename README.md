@@ -46,7 +46,7 @@ To increase the version number to a later release will require updates to action
 * `hpe_icsp.icsp_job_status` - Retrieve Status of specified Job
 * `hpe_icsp.icsp_mid_get` - Retrieve ICSP ID (MID) for Specified Server
 * `hpe_icsp.icsp_multi_server_attribute_add` - Apply Attribute with server unique values across multiple servers.
-* `hpe_icsp.icsp_multi_server_attribute_add` - Apply Attribute with server unique values for a single server.
+* `hpe_icsp.icsp_single_server_attribute_add` - Apply Attribute with server unique values for a single server.
 * `hpe_icsp.icsp_server_attributes_add` - Assign custom cttributes to server
 * `hpe_icsp.icsp_server_attributes_del` - Remove custom attribute from server
 * `hpe_icsp.icsp_server_attributes_get` - Retrieve attributes set against server
