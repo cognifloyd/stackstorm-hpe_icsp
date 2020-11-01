@@ -28,8 +28,14 @@ parameters:
   value:
     required: true
     position: 3
-    type: array
-    description: List of Values to be set against servers. Must match order of identifier.
+    oneOf:
+      - type: "null"
+      - type: boolean
+      - type: string
+      - type: integer
+      - type: number
+      - type: object
+    description: The value to set against the server.
   connection_details:
     required: false
     position: 4

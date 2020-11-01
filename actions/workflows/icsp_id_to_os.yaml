@@ -1,6 +1,6 @@
 ---
 version: '1.0'
-description: Deploy an OS to a list of Servers
+description: Deploy an OS to a single Server
 input:
   - identifier
   - id_type
