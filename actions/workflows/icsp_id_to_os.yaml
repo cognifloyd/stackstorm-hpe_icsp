@@ -1,0 +1,80 @@
+---
+version: '1.0'
+description: Deploy an OS to a single Server
+input:
+  - identifier
+  - id_type
+  - hostname
+  - buildplan_ids
+  - connection_details
+tasks:
+  fork_input:
+    next:
+      - when: <% succeeded() and (ctx().id_type = 'UUID') %>
+        do:
+          - get_mid_uuid
+      - when: <% succeeded() and (ctx().id_type = 'serialnumber') %>
+        do:
+          - get_mid_sn
+  get_mid_uuid:
+    action: hpe_icsp.icsp_mid_get
+    retry:
+      count: 5
+      delay: 120
+    input:
+      identifiers:
+        - <% ctx().identifier %>
+      identifier_type: uuid
+      connection_details: <% ctx().connection_details %>
+    next:
+      - when: '{{ succeeded() }}'
+        publish:
+          - icsp_mid: <% result().result.mid %>
+        do:
+          - generate_server_data
+  get_mid_sn:
+    action: hpe_icsp.icsp_mid_get
+    retry:
+      count: 5
+      delay: 120
+    input:
+      identifiers:
+        - <% ctx().identifier %>
+      identifier_type: serialnumber
+      connection_details: <% ctx().connection_details %>
+    next:
+      - when: '{{ succeeded() }}'
+        publish:
+          - icsp_mid: <% result().result.mid %>
+        do:
+          - generate_server_data
+  generate_server_data:
+    action: hpe_icsp.icsp_server_data_format
+    input:
+      identifiers:
+        - <% ctx().icsp_mid %>
+      identifier_type: mid
+      hostnames:
+        - <% ctx().hostname %>
+    next:
+      - when: '{{ succeeded() }}'
+        publish:
+          - icsp_serverdata: <% result().result %>
+        do:
+          - apply_buildplan
+  apply_buildplan:
+    action: hpe_icsp.icsp_buildplan_apply
+    input:
+      server_data: <% ctx().icsp_serverdata %>
+      buildplan_ids: <% ctx().buildplan_ids %>
+    next:
+      - when: '{{ succeeded() }}'
+        publish:
+          - icsp_jobid: <% result().result.jobid %>
+        do:
+          - monitor_job
+  monitor_job:
+    action: hpe_icsp.icsp_job_status_get
+    input:
+      job_id: <% ctx().icsp_jobid %>
+      monitor: true

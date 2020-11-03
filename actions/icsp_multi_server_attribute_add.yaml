@@ -1,17 +1,17 @@
 ---
-name: "icsp_multi_server_attribute_add"
-runner_type: "mistral-v2"
-pack: "hpe_icsp"
+name: icsp_multi_server_attribute_add
+runner_type: orquesta
+pack: hpe_icsp
 enabled: true
-entry_point: "workflows/icsp_multi_server_attribute_add.yaml"
-description: "Apply Attribute with server unique values across multiple servers."
+entry_point: workflows/icsp_multi_server_attribute_add.yaml
+description: Apply Attribute with server unique values across multiple servers.
 
 parameters:
   identifiers:
     required: true
     position: 0
     type: array
-    description: "List of Serial Numbers or UUID of the target Servers (must be all of same type)."
+    description: List of Serial Numbers or UUID of the target Servers (must be all of same type).
   id_type:
     required: true
     position: 1
@@ -24,17 +24,17 @@ parameters:
     required: true
     position: 2
     type: string
-    description: "Attribute Key to be added."
+    description: Attribute Key to be added.
   attribute_values:
     required: true
     position: 3
     type: array
-    description: "List of Values to be set against servers. Must match order of identifier."
+    description: List of Values to be set against servers. Must match order of identifier.
   connection_details:
     required: false
     position: 4
     type: object
-    description: "Overriding connection details for ICSP server"
+    description: Overriding connection details for ICSP server
   workflow:
     default: hpe_icsp.icsp_multi_server_attribute_add.entry
     immutable: true
